@@ -59,8 +59,8 @@ class ThreeDaysWeather extends StatelessWidget {
                 // выводит самое холодное значение температуры
                 cityName: cityName,
                 temperature: coldestModel.temperature,
-                windSpeed: coldestModel.windSpeed,
-                humidity: coldestModel.humidity,
+                windSpeed: coldestModel.windSpeed.toString(),
+                humidity: coldestModel.humidity.toString(),
               ),
               const SizedBox(height: 50),
               const HeaderRow(),
@@ -85,12 +85,12 @@ class ThreeDaysWeather extends StatelessWidget {
                                     SizedBox(
                                       height: 40,
                                       width: 80,
-                                      child: Text(e.humidity, style: AppTextStyles.simpleTextStyle),
+                                      child: Text(e.humidity.toString(), style: AppTextStyles.simpleTextStyle),
                                     ),
                                     SizedBox(
                                       height: 40,
                                       width: 80,
-                                      child: Text(e.windSpeed, style: AppTextStyles.simpleTextStyle),
+                                      child: Text(e.windSpeed.toString(), style: AppTextStyles.simpleTextStyle),
                                     ),
                                     SizedBox(
                                       height: 40,
@@ -135,11 +135,11 @@ class ColdestTempRow extends StatelessWidget {
             const Spacer(),
             SizedBox(
               width: 80,
-              child: Text(coldestModel.humidity, style: AppTextStyles.simpleTextStyle),
+              child: Text(coldestModel.humidity.toString(), style: AppTextStyles.simpleTextStyle),
             ),
             SizedBox(
               width: 80,
-              child: Text(coldestModel.windSpeed, style: AppTextStyles.simpleTextStyle),
+              child: Text(coldestModel.windSpeed.toString(), style: AppTextStyles.simpleTextStyle),
             ),
             SizedBox(
               width: 80,
