@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TempMainLabel extends StatelessWidget {
   final String cityName;
-  final int temperature;
+  final String temperature;
   final String windSpeed;
   final String humidity;
 

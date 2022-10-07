@@ -4,7 +4,7 @@ class FindColdestTemp {
   WeatherDataModel findColdestTemp(List<WeatherDataModel> weatherData) {
     WeatherDataModel coldestTemperatureModel = weatherData.first;
     for (var element in weatherData) {
-      if (element.temperature < coldestTemperatureModel.temperature) {
+      if (double.parse(element.temperature) < double.parse(coldestTemperatureModel.temperature)) {
         coldestTemperatureModel = element;
       }
     }

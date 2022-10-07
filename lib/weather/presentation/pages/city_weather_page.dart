@@ -6,7 +6,7 @@ import '../bloc/weather_app_bloc.dart';
 class CityWeatherPage extends StatelessWidget {
   final String assetImage;
   final String cityName;
-  final int temperature;
+  final String temperature;
   final String windSpeed;
   final String humidity;
 

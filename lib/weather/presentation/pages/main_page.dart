@@ -21,8 +21,8 @@ class WeatherAppMainPage extends StatelessWidget {
         if (state is WeatherInCityState) {
           return CityWeatherPage(
             temperature: state.weatherData.temperature,
-            windSpeed: state.weatherData.windSpeed.toString(),
-            humidity: state.weatherData.humidity.toString(),
+            windSpeed: state.weatherData.windSpeed,
+            humidity: state.weatherData.humidity,
             cityName: state.cityName,
             assetImage: state.assetImage,
           );

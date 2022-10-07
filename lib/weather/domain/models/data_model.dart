@@ -1,8 +1,8 @@
 class WeatherDataModel {
   //Модель для отображния данных в удобном формате
-  final int temperature;
-  final double windSpeed;
-  final int humidity;
+  final String temperature;
+  final String windSpeed;
+  final String humidity;
   final String weather;
   final String weatherDate;
 
@@ -18,10 +18,11 @@ class WeatherDataModel {
     return WeatherDataModel(
       weatherDate: json['dt_txt'] as String,
       weather: json['weather'][0]['main'] as String,
-      temperature: (json['main']['temp']).round()
-          as int, //присылает иногда инт а иногда дабл, что вызывает ошибки, поэтому пришлось округлить до инта
-      windSpeed: json['wind']['speed'] as double,
-      humidity: json['main']['humidity'],
+      temperature: (json['main']['temp'])
+          .toString(), //присылает иногда инт а иногда дабл, что вызывает ошибки, поэтому решил все переводить в строку
+      windSpeed: (json['wind']['speed'])
+          .toString(), //присылает иногда инт а иногда дабл, что вызывает ошибки, поэтому решил все переводить в строку
+      humidity: (json['main']['humidity']).toString(),
     );
   }
 }
