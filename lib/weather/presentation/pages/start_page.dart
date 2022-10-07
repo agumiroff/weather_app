@@ -38,8 +38,6 @@ class StartPage extends StatelessWidget {
                 TextButtonWidget(
                   onPressed: () {
                     BlocProvider.of<WeatherAppBloc>(context).add(ShowWeatherInCity(cityName: controller.text));
-                    // print('${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}');
-                    // print(DateTime.fromMillisecondsSinceEpoch(1665154800 * 1000));
                   },
                 ),
               ],

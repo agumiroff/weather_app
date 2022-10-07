@@ -1,4 +1,5 @@
 class WeatherDataModel {
+  //Модель для отображния данных в удобном формате
   final double temperature;
   final String windSpeed;
   final String humidity;
@@ -11,7 +12,7 @@ class WeatherDataModel {
       required this.temperature,
       required this.windSpeed,
       required this.humidity});
-
+//метод для расшифровки ДЖСОНА
   factory WeatherDataModel.fromJson(Map<String, dynamic> json) {
     return WeatherDataModel(
       weatherDate: json['dt_txt'] as String,

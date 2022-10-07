@@ -1,12 +1,10 @@
-//==============================================States==============================================
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:weather_app/weather/domain/use_cases/find_coldest_temperature.dart';
 import 'package:weather_app/weather/domain/use_cases/wallpaper_change.dart';
-
 import '../../domain/models/data_model.dart';
-import '../../domain/repository/api_request.dart';
+import '../../domain/repository/repository.dart';
+//==============================================States==============================================
 
 abstract class WeatherAppStates {}
 
@@ -70,12 +68,13 @@ class WeatherAppBloc extends Bloc<WeatherAppEvents, WeatherAppStates> {
     on<ShowWeatherInCity>((event, emit) async {
       emit(WeatherAppLoadingState());
       try {
-        List<WeatherDataModel> weatherData = await Repository(cityName: event.cityName).parseUrl();
-        String assetImage = await WallpaperChange().wallpaperChange(weatherData.first);
-        print(weatherData.first);
+        List<WeatherDataModel> weatherData = await Repository(cityName: event.cityName)
+            .parseUrl(); // Получаем лист с данными о погоде в выбранном городе
+        String assetImage =
+            await WallpaperChange().wallpaperChange(weatherData.first); //выбираем обои, в зависимости от погоды
         emit(WeatherInCityState(weatherData: weatherData.first, cityName: event.cityName, assetImage: assetImage));
       } on Error catch (error) {
-        print('===============================ERROR==========================$error');
+        emit(WeatherAppErrorState(error));
       }
     });
     on<ShowThreeDaysWeather>((event, emit) async {
@@ -96,7 +95,7 @@ class WeatherAppBloc extends Bloc<WeatherAppEvents, WeatherAppStates> {
             assetImage: assetImage,
             coldestModel: coldestTemperatureModel));
       } on Error catch (error) {
-        print('===============================ERROR==========================$error');
+        emit(WeatherAppErrorState(error));
       }
     });
   }

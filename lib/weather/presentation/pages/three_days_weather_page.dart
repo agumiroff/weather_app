@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/ui/styles/styles.dart';
-import 'package:weather_app/ui/widgets/temp_main_label.dart';
-import 'package:weather_app/weather/domain/use_cases/get_day_from_date.dart';
+import 'package:weather_app/ui/styles/text_styles.dart';
+import 'package:weather_app/ui/widgets/main_temperature_widget.dart';
+import 'package:weather_app/weather/domain/use_cases/day_from_date.dart';
 import 'package:weather_app/weather/presentation/bloc/weather_app_bloc.dart';
 import '../../../ui/widgets/appbar_button_widget.dart';
 import '../../domain/models/data_model.dart';
@@ -71,13 +71,15 @@ class ThreeDaysWeather extends StatelessWidget {
                     children: [
                       const Opacity(opacity: 0.5, child: Divider(height: 2, color: Colors.white)),
                       Column(
+                        //Лист с данными из модели, по которому мы идем, что б вытащить все данные за 3 дня
+                        //все данные оборачиваются в SizedBoxы, для корректного отображения
                         children: listOfWeather
                             .map((e) => Row(
                                   children: [
                                     SizedBox(
                                         height: 40,
                                         width: 100,
-                                        child: Text(dayData[DateTime.parse(e.weatherDate).weekday].toString(),
+                                        child: Text(DayData.dayData[DateTime.parse(e.weatherDate).weekday].toString(),
                                             style: AppTextStyles.simpleTextStyle)),
                                     const Spacer(),
                                     SizedBox(
@@ -111,6 +113,7 @@ class ThreeDaysWeather extends StatelessWidget {
   }
 }
 
+//Виджет строки с самой холодной температурой
 class ColdestTempRow extends StatelessWidget {
   final WeatherDataModel coldestModel;
   const ColdestTempRow({Key? key, required this.coldestModel}) : super(key: key);
@@ -127,7 +130,7 @@ class ColdestTempRow extends StatelessWidget {
           children: [
             SizedBox(
                 width: 80,
-                child: Text(dayData[DateTime.parse(coldestModel.weatherDate).weekday].toString(),
+                child: Text(DayData.dayData[DateTime.parse(coldestModel.weatherDate).weekday].toString(),
                     style: AppTextStyles.simpleTextStyle)),
             const Spacer(),
             SizedBox(
@@ -149,6 +152,7 @@ class ColdestTempRow extends StatelessWidget {
   }
 }
 
+//Виджет строки заголовков таблицы
 class HeaderRow extends StatelessWidget {
   const HeaderRow({Key? key}) : super(key: key);
 

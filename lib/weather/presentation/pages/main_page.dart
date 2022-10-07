@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/weather/presentation/pages/error_page.dart';
 import 'package:weather_app/weather/presentation/pages/start_page.dart';
 import 'package:weather_app/weather/presentation/pages/three_days_weather_page.dart';
 import '../bloc/weather_app_bloc.dart';
@@ -38,9 +39,7 @@ class WeatherAppMainPage extends StatelessWidget {
           );
         }
         if (state is WeatherAppErrorState) {
-          return StartPage(
-            controller: TextEditingController(),
-          );
+          return ErrorPage(errorMessage: state.errorMessage.toString());
         }
         return const Center(child: CircularProgressIndicator());
       },
