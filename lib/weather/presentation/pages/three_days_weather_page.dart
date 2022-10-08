@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_app/ui/styles/text_styles.dart';
 import 'package:weather_app/ui/widgets/main_temperature_widget.dart';
 import 'package:weather_app/weather/domain/use_cases/day_from_date.dart';
@@ -38,7 +39,7 @@ class ThreeDaysWeather extends StatelessWidget {
           const Spacer(),
           Text(
             '${cityName[0].toUpperCase()}${cityName.substring(1)}',
-            style: const TextStyle(color: Colors.black, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20.sp),
           ),
           const Spacer(flex: 2),
         ]),
@@ -54,7 +55,7 @@ class ThreeDaysWeather extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 150),
+              SizedBox(height: 150.h),
               TempMainLabel(
                 // выводит самое холодное значение температуры
                 cityName: cityName,
@@ -62,7 +63,7 @@ class ThreeDaysWeather extends StatelessWidget {
                 windSpeed: coldestModel.windSpeed.toString(),
                 humidity: coldestModel.humidity.toString(),
               ),
-              const SizedBox(height: 50),
+              SizedBox(height: 50.h),
               const HeaderRow(),
               ColdestTempRow(coldestModel: coldestModel),
               Expanded(
@@ -76,27 +77,12 @@ class ThreeDaysWeather extends StatelessWidget {
                         children: listOfWeather
                             .map((e) => Row(
                                   children: [
-                                    SizedBox(
-                                        height: 40,
-                                        width: 100,
-                                        child: Text(DayData.dayData[DateTime.parse(e.weatherDate).weekday].toString(),
-                                            style: AppTextStyles.simpleTextStyle)),
+                                    RowElement(
+                                        rowText: DayData.dayData[DateTime.parse(e.weatherDate).weekday].toString()),
                                     const Spacer(),
-                                    SizedBox(
-                                      height: 40,
-                                      width: 80,
-                                      child: Text(e.humidity.toString(), style: AppTextStyles.simpleTextStyle),
-                                    ),
-                                    SizedBox(
-                                      height: 40,
-                                      width: 80,
-                                      child: Text(e.windSpeed.toString(), style: AppTextStyles.simpleTextStyle),
-                                    ),
-                                    SizedBox(
-                                      height: 40,
-                                      width: 80,
-                                      child: Text(e.temperature.toString(), style: AppTextStyles.simpleTextStyle),
-                                    ),
+                                    RowElement(rowText: e.humidity.toString()),
+                                    RowElement(rowText: e.windSpeed.toString()),
+                                    RowElement(rowText: e.temperature.toString()),
                                   ],
                                 ))
                             .toList(),
@@ -123,28 +109,16 @@ class ColdestTempRow extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(color: Color.fromRGBO(255, 255, 255, 0.5)),
       child: SizedBox(
-        height: 40,
+        height: 40.h,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-                width: 80,
-                child: Text(DayData.dayData[DateTime.parse(coldestModel.weatherDate).weekday].toString(),
-                    style: AppTextStyles.simpleTextStyle)),
+            RowElement(rowText: DayData.dayData[DateTime.parse(coldestModel.weatherDate).weekday].toString()),
             const Spacer(),
-            SizedBox(
-              width: 80,
-              child: Text(coldestModel.humidity.toString(), style: AppTextStyles.simpleTextStyle),
-            ),
-            SizedBox(
-              width: 80,
-              child: Text(coldestModel.windSpeed.toString(), style: AppTextStyles.simpleTextStyle),
-            ),
-            SizedBox(
-              width: 80,
-              child: Text(coldestModel.temperature.toString(), style: AppTextStyles.simpleTextStyle),
-            ),
+            RowElement(rowText: coldestModel.humidity.toString()),
+            RowElement(rowText: coldestModel.windSpeed.toString()),
+            RowElement(rowText: coldestModel.temperature.toString()),
           ],
         ),
       ),
@@ -159,28 +133,45 @@ class HeaderRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90,
+      height: 90.h,
       child: Row(
-        children: const [
+        children: [
           SizedBox(
-              width: 90,
-              child: Center(child: Text('День', textAlign: TextAlign.center, style: AppTextStyles.tableHeaderStyle))),
-          Spacer(),
+              width: 90.w,
+              child: const Center(
+                  child: Text('День', textAlign: TextAlign.center, style: AppTextStyles.tableHeaderStyle))),
+          const Spacer(),
           SizedBox(
-            width: 100,
-            child: Align(
+            width: 100.w,
+            child: const Align(
                 alignment: Alignment.center,
                 child: Text('Влажность', textAlign: TextAlign.center, style: AppTextStyles.tableHeaderStyle)),
           ),
           SizedBox(
-            width: 90,
-            child: Align(
+            width: 90.w,
+            child: const Align(
                 alignment: Alignment.center,
                 child: Text('Скорость ветра', textAlign: TextAlign.center, style: AppTextStyles.tableHeaderStyle)),
           ),
-          SizedBox(height: 55, width: 90, child: Center(child: Icon(Icons.thermostat, size: 40, color: Colors.white))),
+          const SizedBox(
+              height: 55, width: 90, child: Center(child: Icon(Icons.thermostat, size: 40, color: Colors.white))),
         ],
       ),
+    );
+  }
+}
+
+//Элемент строки
+class RowElement extends StatelessWidget {
+  final String rowText;
+  const RowElement({Key? key, required this.rowText}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 40.h,
+      width: 80.w,
+      child: Text(rowText, style: AppTextStyles.simpleTextStyle),
     );
   }
 }

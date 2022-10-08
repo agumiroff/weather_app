@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weather_app/ui/styles/text_styles.dart';
 import 'package:weather_app/weather/presentation/bloc/weather_app_bloc.dart';
 
@@ -40,9 +41,9 @@ class _ErrorPageState extends State<ErrorPage> {
                 },
                 buttonText: 'Cancel'),
             const Spacer(),
-            const Text(
+            Text(
               'Ошибка',
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              style: TextStyle(color: Colors.black, fontSize: 20.sp),
             ),
             const Spacer(
               flex: 2,
@@ -70,8 +71,8 @@ class SnackBarWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(errorMessage, style: AppTextStyles.simpleTextStyle),
-              const SizedBox(height: 20),
-              TextButton(onPressed: onPressed, child: const Text('Cancel', style: TextStyle(fontSize: 20))),
+              SizedBox(height: 20.h),
+              TextButton(onPressed: onPressed, child: Text('Cancel', style: TextStyle(fontSize: 20.sp))),
             ],
           ),
         ),

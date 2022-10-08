@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarButton extends StatelessWidget {
   final String buttonText;
@@ -14,7 +15,7 @@ class AppBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: Text(buttonText, style: const TextStyle(fontSize: 20)),
+      child: Text(buttonText, style: TextStyle(fontSize: 20.sp)),
     );
   }
 }

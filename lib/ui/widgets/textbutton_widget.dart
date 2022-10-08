@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
@@ -11,10 +12,10 @@ class TextButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
         onPressed: onPressed,
-        child: const Text('Подтвердить',
+        child: Text('Подтвердить',
             style: TextStyle(
-              color: Color(0xFF0174FF),
-              fontSize: 18,
+              color: const Color(0xFF0174FF),
+              fontSize: 18.sp,
             )));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TempMainLabel extends StatelessWidget {
   final String cityName;
@@ -21,19 +22,19 @@ class TempMainLabel extends StatelessWidget {
       children: [
         Text(
           '${cityName[0].toUpperCase()}${cityName.substring(1)}',
-          style: const TextStyle(fontSize: 50, color: Colors.white),
+          style: TextStyle(fontSize: 50.sp, color: Colors.white),
         ),
         Text(
           '$temperature F',
-          style: const TextStyle(fontSize: 50, color: Colors.white),
+          style: TextStyle(fontSize: 50.sp, color: Colors.white),
         ),
         Text(
           'wind speed: $windSpeed',
-          style: const TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20.sp, color: Colors.white),
         ),
         Text(
           'humidity: $humidity',
-          style: const TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 20.sp, color: Colors.white),
         ),
       ],
     );

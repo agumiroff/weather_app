@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../ui/widgets/appbar_button_widget.dart';
 import '../bloc/weather_app_bloc.dart';
 
@@ -37,7 +38,7 @@ class CityWeatherPage extends StatelessWidget {
             const Spacer(),
             Text(
               '${cityName[0].toUpperCase()}${cityName.substring(1)}',
-              style: const TextStyle(color: Colors.black, fontSize: 20),
+              style: TextStyle(color: Colors.black, fontSize: 20.sp),
             ),
             const Spacer(),
             AppBarButton(
@@ -62,19 +63,19 @@ class CityWeatherPage extends StatelessWidget {
                 const Spacer(flex: 2),
                 Text(
                   '${cityName[0].toUpperCase()}${cityName.substring(1)}',
-                  style: const TextStyle(fontSize: 70, color: Colors.white),
+                  style: TextStyle(fontSize: 70.sp, color: Colors.white),
                 ),
                 Text(
                   '$temperature F',
-                  style: const TextStyle(fontSize: 70, color: Colors.white),
+                  style: TextStyle(fontSize: 70.sp, color: Colors.white),
                 ),
                 Text(
                   'wind speed: $windSpeed',
-                  style: const TextStyle(fontSize: 30, color: Colors.white),
+                  style: TextStyle(fontSize: 30.sp, color: Colors.white),
                 ),
                 Text(
                   'humidity: $humidity',
-                  style: const TextStyle(fontSize: 30, color: Colors.white),
+                  style: TextStyle(fontSize: 30.sp, color: Colors.white),
                 ),
                 const Spacer(flex: 3),
               ],
@@ -83,3 +84,4 @@ class CityWeatherPage extends StatelessWidget {
         ));
   }
 }
+
